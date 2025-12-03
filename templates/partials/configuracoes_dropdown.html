@@ -1,0 +1,30 @@
+<!-- DROPDOWN DE CONFIGURAÇÕES (USUÁRIOS + TEMA) -->
+<div class="collapse collapse-arrow bg-transparent">
+    <input type="checkbox" />
+
+    <!-- Título -->
+    <div
+        class="collapse-title flex items-center gap-3 px-3 py-2 text-[15px] hover:bg-slate-100 dark:hover:bg-slate-800 rounded-md cursor-pointer transition">
+        <i class="fa-solid fa-gear text-slate-500"></i>
+        Configurações
+    </div>
+
+    <!-- Submenu -->
+    <div class="collapse-content pl-11 space-y-2">
+
+        <!-- Usuários (Admin Django) -->
+        <a href="{% url 'admin:index' %}"
+            class="flex items-center gap-2 text-slate-700 dark:text-slate-300 hover:text-primary transition">
+            <i class="fa-solid fa-users-cog text-slate-500 text-sm"></i>
+            Usuários
+        </a>
+
+        <!-- Tema -->
+        <button onclick="toggleTheme()"
+            class="flex items-center gap-2 text-slate-700 dark:text-slate-300 hover:text-primary transition">
+            <i class="fa-solid fa-moon text-slate-500 text-sm"></i>
+            Alternar Tema
+        </button>
+
+    </div>
+</div>

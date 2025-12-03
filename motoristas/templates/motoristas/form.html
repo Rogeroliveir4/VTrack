@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}Motorista{% endblock %}
+{% block content %}
+
+<div class="bg-white p-6 rounded-xl shadow border max-w-xl mx-auto">
+
+    <h1 class="text-2xl font-bold mb-6">{{ titulo }}</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="space-y-4">
+
+            <label class="form-control">
+                <span class="label-text">Nome</span>
+                <input type="text" name="nome" value="{{ motorista.nome }}"
+                    class="input input-bordered w-full">
+            </label>
+
+            <label class="form-control">
+                <span class="label-text">CPF</span>
+                <input type="text" name="cpf" value="{{ motorista.cpf }}"
+                    class="input input-bordered w-full">
+            </label>
+
+            <label class="form-control">
+                <span class="label-text">Telefone</span>
+                <input type="text" name="telefone"
+                    value="{{ motorista.telefone }}"
+                    class="input input-bordered w-full">
+            </label>
+
+            <label class="form-control">
+                <span class="label-text">Email</span>
+                <input type="email" name="email" value="{{ motorista.email }}"
+                    class="input input-bordered w-full">
+            </label>
+
+            <label class="form-control">
+                <span class="label-text">Número da CNH</span>
+                <input type="text" name="cnh_numero"
+                    value="{{ motorista.cnh_numero }}"
+                    class="input input-bordered w-full">
+            </label>
+
+            <label class="form-control">
+                <span class="label-text">Categoria da CNH</span>
+                <input type="text" name="cnh_categoria"
+                    value="{{ motorista.cnh_categoria }}"
+                    class="input input-bordered w-full">
+            </label>
+
+            <label class="form-control">
+                <span class="label-text">Validade da CNH</span>
+                <input type="date" name="cnh_validade"
+                    value="{{ motorista.cnh_validade|date:'Y-m-d' }}"
+                    class="input input-bordered w-full">
+            </label>
+
+            <label class="flex items-center gap-2">
+                <input type="checkbox" name="ativo" class="checkbox"
+                    {% if motorista.ativo %}checked{% endif %}>
+                Ativo
+            </label>
+
+        </div>
+
+        <div class="flex justify-end gap-3 mt-6">
+            <button class="btn btn-primary">Salvar</button>
+            <a href="{% url 'listar_motoristas' %}"
+                class="btn btn-outline">Cancelar</a>
+        </div>
+    </form>
+
+</div>
+
+{% endblock %}

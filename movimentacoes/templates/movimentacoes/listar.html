@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}Movimentações{% endblock %}
+
+{% block content %}
+
+<h1 class="text-2xl font-bold text-[#00594C] mb-4">Movimentações</h1>
+
+<!-- Filtros -->
+<div class="flex flex-col lg:flex-row justify-between items-center gap-4 mb-6">
+
+    <form method="get" class="flex gap-2 w-full lg:w-auto">
+        <input
+            type="text"
+            name="search"
+            class="input input-bordered w-full lg:w-64"
+            placeholder="Buscar por placa ou motorista"
+            value="{{ search }}">
+        <select name="status" class="select select-bordered">
+            <option value>Todos</option>
+            <option value="ENTRADA" {% if status == "ENTRADA" %}selected{% endif
+                %}>Entrada</option>
+            <option value="SAIDA" {% if status == "SAIDA" %}selected{% endif
+                %}>Saída</option>
+        </select>
+        <button class="btn bg-[#00594C] text-white">Filtrar</button>
+    </form>
+
+    <a href="{% url 'criar_movimentacao' %}"
+        class="btn bg-[#00594C] text-white">
+        + Nova Movimentação
+    </a>
+</div>
+
+<!-- Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+    {% for m in movimentacoes %}
+    <div class="bg-white shadow-md rounded-xl p-4 border border-gray-100">
+
+        <div class="flex justify-between mb-2">
+            <h2 class="font-semibold text-lg">{{ m.veiculo.placa }}</h2>
+
+            <span class="px-2 py-1 rounded text-white
+                {% if m.status == 'ENTRADA' %} bg-green-500
+                {% else %} bg-red-500 {% endif %}">
+                {{ m.status }}
+            </span>
+        </div>
+
+        <p class="text-sm text-gray-600"><b>Motorista:</b> {{ m.motorista.nome
+            }}</p>
+        <p class="text-sm text-gray-600"><b>Data:</b> {{ m.data_hora }}</p>
+
+        {% if m.observacao %}
+        <p class="text-sm text-gray-600 mt-2"><b>Obs:</b> {{ m.observacao }}</p>
+        {% endif %}
+
+        <div class="flex justify-end gap-2 mt-4">
+            <a href="{% url 'detalhes_movimentacao' m.id %}"
+                class="btn btn-sm">Ver</a>
+            <a href="{% url 'editar_movimentacao' m.id %}"
+                class="btn btn-sm btn-neutral">Editar</a>
+            <a href="{% url 'excluir_movimentacao' m.id %}"
+                onclick="return confirm('Excluir movimentação?')"
+                class="btn btn-sm btn-error text-white">Excluir</a>
+        </div>
+
+    </div>
+    {% empty %}
+    <p class="text-gray-500">Nenhuma movimentação encontrada.</p>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

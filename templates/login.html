@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Entrar • VTrack</title>
+
+        <!-- Tailwind CDN -->
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <!-- DaisyUI -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/daisyui@4.10.0/dist/full.min.css"
+            rel="stylesheet" />
+
+        <!-- Fonte -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+            rel="stylesheet">
+
+        <style>
+    body { font-family: Inter, sans-serif; }
+  </style>
+    </head>
+
+    <body
+        class="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/10 via-white to-primary/10">
+
+        <div class="w-full max-w-md bg-white shadow-xl rounded-2xl p-8">
+
+            <div class="flex flex-col items-center mb-6">
+                <div
+                    class="w-14 h-14 bg-primary text-white rounded-xl flex items-center justify-center text-2xl font-bold">
+                    VT
+                </div>
+                <h1 class="text-2xl font-bold text-primary mt-4">Entrar no
+                    VTrack</h1>
+                <p class="text-slate-500 text-sm mt-1">Controle de veículos
+                    corporativos</p>
+            </div>
+
+            <!-- Formulário -->
+            <form method="POST">
+                {% csrf_token %}
+
+                {% if form.errors %}
+                <div class="alert alert-error text-sm mb-3">
+                    Usuário ou senha incorretos.
+                </div>
+                {% endif %}
+
+                <label class="form-control w-full mb-4">
+                    <span class="label-text font-medium">Usuário</span>
+                    <input type="text" name="username"
+                        class="input input-bordered w-full" required />
+                </label>
+
+                <label class="form-control w-full mb-6">
+                    <span class="label-text font-medium">Senha</span>
+                    <input type="password" name="password"
+                        class="input input-bordered w-full" required />
+                </label>
+
+                <button
+                    class="btn btn-primary w-full text-white text-lg">Entrar</button>
+
+                <div class="text-sm text-center text-slate-500 mt-4">
+                    © {{ now.year }} VTrack — todos os direitos reservados.
+                </div>
+
+            </form>
+        </div>
+
+    </body>
+</html>

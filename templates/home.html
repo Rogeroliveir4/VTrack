@@ -1,8 +1,33 @@
 {% extends "base.html" %}
-
-{% block title %}Início - VTrack{% endblock %}
-
+{% block title %}Home{% endblock %}
 {% block content %}
-<h1>VTrack funcionando!</h1>
-<p>Sistema online com Django + Railway + Neon</p>
+
+<h1 class="text-3xl font-bold">Bem-vindo ao VTrack</h1>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+
+    <div class="card bg-primary text-primary-content shadow-xl">
+        <div class="card-body">
+            <h2 class="card-title">Veículos</h2>
+            <p>Total: 14</p>
+        </div>
+    </div>
+
+
+    <div class="card bg-secondary text-secondary-content shadow-xl">
+        <div class="card-body">
+            <h2 class="card-title">Motoristas</h2>
+            <p>Total: 7</p>
+        </div>
+    </div>
+
+    <div class="card bg-accent text-accent-content shadow-xl">
+        <div class="card-body">
+            <h2 class="card-title">Movimentações</h2>
+            <p>Hoje: 3</p>
+        </div>
+    </div>
+
+</div>
+
 {% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Detalhes do Motorista{% endblock %}
+{% block content %}
+
+<div class="bg-white p-6 rounded-xl shadow border max-w-xl mx-auto">
+
+    <h1 class="text-2xl font-bold mb-4">{{ motorista.nome }}</h1>
+
+    <div class="space-y-2 text-slate-700">
+        <p><strong>CPF:</strong> {{ motorista.cpf }}</p>
+        <p><strong>Telefone:</strong> {{ motorista.telefone }}</p>
+        <p><strong>Email:</strong> {{ motorista.email }}</p>
+        <p><strong>Nº CNH:</strong> {{ motorista.cnh_numero }}</p>
+        <p><strong>Categoria:</strong> {{ motorista.cnh_categoria }}</p>
+        <p><strong>Validade:</strong> {{ motorista.cnh_validade }}</p>
+
+        <p><strong>Status:</strong>
+            {% if motorista.ativo %}
+            <span class="badge badge-success">Ativo</span>
+            {% else %}
+            <span class="badge badge-error">Inativo</span>
+            {% endif %}
+        </p>
+    </div>
+
+    <div class="flex justify-end gap-3 mt-6">
+        <a href="{% url 'editar_motorista' motorista.id %}" class="btn btn-primary">
+            Alterar
+        </a>
+        <a href="{% url 'listar_motoristas' %}" class="btn btn-outline">
+            Cancelar
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}

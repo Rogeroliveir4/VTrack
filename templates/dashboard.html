@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+
+<!-- HERO -->
+<div class="mb-8">
+    <h1 class="text-3xl md:text-4xl font-bold text-slate-800 leading-tight">Dashboard</h1>
+    <p class="text-slate-500 text-sm md:text-base mt-1">
+        Visão geral do sistema 
+    </p>
+</div>
+
+<!-- CARDS DE MÉTRICAS -->
+<div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 mb-10">
+
+    <!-- Veículos -->
+    <div class="bg-white rounded-xl p-4 md:p-6 shadow border border-slate-200 hover:shadow-md transition">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-xs md:text-sm text-slate-500">Veículos</p>
+                <p class="text-2xl md:text-3xl font-bold text-primary">14</p>
+            </div>
+            <i class="fa-solid fa-car-side text-primary text-2xl md:text-3xl"></i>
+        </div>
+    </div>
+
+    <!-- Motoristas -->
+    <div class="bg-white rounded-xl p-4 md:p-6 shadow border border-slate-200 hover:shadow-md transition">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-xs md:text-sm text-slate-500">Motoristas</p>
+                <p class="text-2xl md:text-3xl font-bold text-primary">7</p>
+            </div>
+            <i class="fa-solid fa-user text-primary text-2xl md:text-3xl"></i>
+        </div>
+    </div>
+
+    <!-- Movimentações Hoje -->
+    <div class="bg-white rounded-xl p-4 md:p-6 shadow border border-slate-200 hover:shadow-md transition">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-xs md:text-sm text-slate-500">Movimentações Hoje</p>
+                <p class="text-2xl md:text-3xl font-bold text-primary">3</p>
+            </div>
+            <i class="fa-solid fa-right-left text-primary text-2xl md:text-3xl"></i>
+        </div>
+    </div>
+
+    <!-- Disponíveis -->
+    <div class="bg-white rounded-xl p-4 md:p-6 shadow border border-slate-200 hover:shadow-md transition">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-xs md:text-sm text-slate-500">Disponíveis</p>
+                <p class="text-2xl md:text-3xl font-bold text-green-600">11</p>
+            </div>
+            <i class="fa-solid fa-check text-green-600 text-2xl md:text-3xl"></i>
+        </div>
+    </div>
+
+</div>
+
+<!-- GRÁFICO + LISTA -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 mb-10">
+
+    <!-- GRÁFICO -->
+    <div class="lg:col-span-2 bg-white rounded-xl p-4 md:p-6 shadow border border-slate-200">
+        <h2 class="text-base md:text-lg font-semibold mb-4">
+            Movimentações - Últimos 30 dias
+        </h2>
+
+        <div class="h-48 md:h-64 bg-slate-100 rounded-lg flex items-center justify-center text-slate-400">
+            <div class="text-center">
+                <i class="fa-solid fa-chart-line text-3xl md:text-4xl mb-2"></i>
+                <p class="text-xs md:text-base">Gráfico aqui (Chart.js pronto para integrar)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- LISTA -->
+    <div class="bg-white rounded-xl p-4 md:p-6 shadow border border-slate-200">
+        <h2 class="text-base md:text-lg font-semibold mb-4">
+            Últimas Entradas / Saídas
+        </h2>
+
+        <ul class="space-y-4 md:space-y-5">
+
+            <li class="flex items-center justify-between">
+                <div>
+                    <p class="font-medium">ABC-1234</p>
+                    <p class="text-xs md:text-sm text-slate-500">João • Entrada • 07:30</p>
+                </div>
+                <i class="fa-solid fa-circle-arrow-right text-primary text-lg"></i>
+            </li>
+
+            <li class="flex items-center justify-between">
+                <div>
+                    <p class="font-medium">XYZ-9876</p>
+                    <p class="text-xs md:text-sm text-slate-500">Maria • Saída • Ontem</p>
+                </div>
+                <i class="fa-solid fa-circle-arrow-left text-red-500 text-lg"></i>
+            </li>
+
+            <li class="flex items-center justify-between">
+                <div>
+                    <p class="font-medium">JKL-5678</p>
+                    <p class="text-xs md:text-sm text-slate-500">Carlos • Entrada • 06:50</p>
+                </div>
+                <i class="fa-solid fa-circle-arrow-right text-primary text-lg"></i>
+            </li>
+
+        </ul>
+    </div>
+
+</div>
+
+<!-- TABELA -->
+<div class="bg-white rounded-xl p-4 md:p-6 shadow border border-slate-200 mb-10">
+    <h2 class="text-base md:text-lg font-semibold mb-4">Resumo Geral</h2>
+
+    <div class="overflow-x-auto">
+        <table class="table w-full text-xs md:text-sm">
+            <thead>
+                <tr>
+                    <th>Placa</th>
+                    <th>Motorista</th>
+                    <th>Tipo</th>
+                    <th>Data</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr class="hover">
+                    <td>ABC-1234</td>
+                    <td>João</td>
+                    <td><span class="badge badge-success">Entrada</span></td>
+                    <td>Hoje - 07:30</td>
+                    <td><a href="#" class="text-primary">Ver</a></td>
+                </tr>
+
+                <tr class="hover">
+                    <td>XYZ-9876</td>
+                    <td>Maria</td>
+                    <td><span class="badge badge-error">Saída</span></td>
+                    <td>Ontem</td>
+                    <td><a href="#" class="text-primary">Ver</a></td>
+                </tr>
+
+                <tr class="hover">
+                    <td>JKL-5678</td>
+                    <td>Carlos</td>
+                    <td><span class="badge badge-success">Entrada</span></td>
+                    <td>Hoje - 06:50</td>
+                    <td><a href="#" class="text-primary">Ver</a></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

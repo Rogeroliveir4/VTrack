@@ -1,0 +1,33 @@
+<nav class="text-[15px] space-y-1">
+
+    <div class="text-xl font-bold text-primary mb-4">VTrack</div>
+
+    <a href="{% url 'dashboard' %}"
+       class="flex items-center gap-3 p-2 rounded-md hover:bg-slate-100 transition">
+        <i class="fa-solid fa-chart-line text-slate-600"></i>
+        Dashboard
+    </a>
+
+    <a href="{% url 'listar_motoristas' %}"
+       class="flex items-center gap-3 p-2 rounded-md hover:bg-slate-100 transition">
+        <i class="fa-solid fa-user text-slate-600"></i>
+        Motoristas
+    </a>
+
+    <a href="{% url 'listar_veiculos' %}"
+       class="flex items-center gap-3 p-2 rounded-md hover:bg-slate-100 transition">
+        <i class="fa-solid fa-car-side text-slate-600"></i>
+        Veículos
+    </a>
+
+    <a href="{% url 'listar_movimentacoes' %}"
+       class="flex items-center gap-3 p-2 rounded-md hover:bg-slate-100 transition">
+        <i class="fa-solid fa-right-left text-slate-600"></i>
+        Movimentações
+    </a>
+
+    <div class="pt-2 mt-2 border-t"></div>
+
+    {% include 'partials/configuracoes_dropdown.html' %}
+
+</nav>

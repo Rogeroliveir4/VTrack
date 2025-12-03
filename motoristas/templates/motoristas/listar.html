@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+{% block title %}Motoristas{% endblock %}
+{% block content %}
+
+<!-- HEADER + BOTÕES -->
+<div
+    class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-6">
+
+    <div>
+        <h1 class="text-3xl font-bold text-slate-800">Motoristas</h1>
+        <p class="text-slate-500 text-sm">Gerencie os motoristas cadastrados</p>
+    </div>
+
+    <div class="flex gap-3">
+
+        <!-- EXPORTAR -->
+        <a href="{% url 'exportar_motoristas' %}"
+            class="btn btn-outline btn-sm">
+            <i class="fa-solid fa-file-export mr-2"></i> Exportar
+        </a>
+
+        <!-- INCLUIR (DESKTOP) -->
+        <a href="{% url 'criar_motorista' %}"
+            class="hidden md:flex btn btn-primary btn-sm">
+            <i class="fa-solid fa-plus mr-2"></i> Novo Motorista
+        </a>
+    </div>
+</div>
+
+<!-- BARRA DE FILTROS -->
+<div
+    class="bg-white p-4 rounded-xl shadow mb-6 border flex flex-col md:flex-row gap-3">
+
+    <!-- Search -->
+    <form method="GET" class="w-full md:w-1/3">
+        <input type="text" name="q" value="{{ request.GET.q }}"
+            placeholder="Buscar por nome ou CPF..."
+            class="input input-bordered w-full" />
+    </form>
+
+    <!-- Filtro Ativos -->
+    <a href="?filtro=ativos"
+        class="btn btn-sm btn-outline">
+        Ativos
+    </a>
+
+    <!-- Filtro Inativos -->
+    <a href="?filtro=inativos"
+        class="btn btn-sm btn-outline">
+        Inativos
+    </a>
+
+    <!-- CNH vencendo -->
+    <a href="?filtro=vencendo"
+        class="btn btn-sm btn-outline">
+        CNH vencendo (40 dias)
+    </a>
+
+</div>
+
+<!-- LISTA MOBILE (CARDS) -->
+<div class="md:hidden space-y-4">
+
+    {% for motorista in motoristas %}
+    <div class="bg-white p-4 rounded-xl shadow border">
+
+        <div class="flex justify-between">
+            <div>
+                <p class="text-lg font-semibold">{{ motorista.nome }}</p>
+                <p class="text-sm text-slate-500">CPF: {{ motorista.cpf }}</p>
+                <p class="text-sm text-slate-500">CNH: {{ motorista.cnh_numero
+                    }}</p>
+            </div>
+
+            <!-- STATUS -->
+            <div>
+                {% if motorista.ativo %}
+                <span class="badge badge-success">Ativo</span>
+                {% else %}
+                <span class="badge badge-error">Inativo</span>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- AÇÕES -->
+        <div class="flex justify-end gap-4 mt-4">
+            <a href="{% url 'detalhar_motorista' motorista.id %}"
+                class="text-primary">
+                <i class="fa-solid fa-eye text-lg"></i>
+            </a>
+        </div>
+    </div>
+
+    {% empty %}
+    <p class="text-center text-slate-500">Nenhum motorista encontrado.</p>
+    {% endfor %}
+</div>
+
+<!-- LISTA DESKTOP -->
+<div class="hidden md:block bg-white p-6 rounded-xl shadow border">
+
+    <table class="table w-full">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>CNH</th>
+                <th>Validade</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for motorista in motoristas %}
+            <tr>
+                <td>{{ motorista.nome }}</td>
+                <td>{{ motorista.cpf }}</td>
+                <td>{{ motorista.cnh_numero }}</td>
+                <td>{{ motorista.cnh_validade }}</td>
+
+                <td>
+                    {% if motorista.ativo %}
+                    <span class="badge badge-success">Ativo</span>
+                    {% else %}
+                    <span class="badge badge-error">Inativo</span>
+                    {% endif %}
+                </td>
+
+                <td class="text-right">
+                    <a href="{% url 'detalhar_motorista' motorista.id %}"
+                        class="text-primary mr-3">
+                        <i class="fa-solid fa-eye"></i>
+                    </a>
+                </td>
+            </tr>
+
+            {% empty %}
+            <tr>
+                <td colspan="6" class="text-center py-5 text-slate-500">
+                    Nenhum motorista encontrado.
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+<!-- FAB MOBILE -->
+<a href="{% url 'criar_motorista' %}"
+    class="fixed bottom-6 right-6 bg-primary text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center text-3xl md:hidden">
+    +
+</a>
+
+{% endblock %}
